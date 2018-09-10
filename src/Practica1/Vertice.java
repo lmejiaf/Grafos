@@ -5,10 +5,19 @@
  */
 package Practica1;
 
+import java.util.LinkedList;
+
 /**
  *
  * @author lmejiaf
  */
-public class Nodo {
+public class Vertice {
+    int dato;
+    LinkedList<Vertice> apuntadores;
+
+    public Vertice(int dato) {
+        this.dato = dato;
+        apuntadores= new LinkedList();
+    }
     
 }

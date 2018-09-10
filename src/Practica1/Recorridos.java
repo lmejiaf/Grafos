@@ -41,7 +41,7 @@ public class Recorridos {
     public static void BFS(int u) {
         // es como un recorrido por niveles
 
-        Queue<Integer> cola = new LinkedList<Integer>();//FIFO
+        Queue<Integer> cola = new LinkedList<>();//FIFO
         visitado[u] = true;
         cola.add(u);
 
