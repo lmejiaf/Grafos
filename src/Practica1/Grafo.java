@@ -14,7 +14,7 @@ import java.util.LinkedList;
 public class Grafo {
 
     LinkedList<Vertice> vertices = new LinkedList<>();
-    LinkedList<Boolean> visitado = new LinkedList<>();
+    LinkedList<Vertice> visitados = new LinkedList<>();
 
     public void insertarAdyacente(Vertice inicial, Vertice fin) {
         if (vertices.contains(inicial)) {
@@ -26,13 +26,8 @@ public class Grafo {
         vertices.add(v);
     }
 
-    static int[][] M = {{0, 1, 1, 0, 1},
-    {1, 0, 1, 1, 1},
-    {1, 1, 0, 1, 1},
-    {0, 1, 1, 0, 0},
-    {1, 1, 1, 0, 0}};
 
-    public void DFS(int u) {
+    public void DFS(Vertice inicio) {
 
 // como hacer un preOrden
 //        //origen u, destino v
@@ -49,11 +44,11 @@ public class Grafo {
 //        }
 //
 //    }   
-        System.out.print(vertices.get(u).dato + " ");
-        visitado.add(u, Boolean.TRUE);
-        for (int v = 0; v < vertices.size(); v++) {
-            if (!visitado.get(v)) {
-                DFS(v);
+        System.out.print(inicio.dato + " ");
+        visitados.add(inicio);
+        for (Vertice apuntador : inicio.apuntadores) {
+            if (!visitados.contains(apuntador)) {
+                DFS(apuntador);
             }
         }
 
@@ -74,10 +69,15 @@ public class Grafo {
         g.add(D);
         g.add(E);
 
-        g.insertarAdyacente(A, B);
+        g.insertarAdyacente(B, A);
         g.insertarAdyacente(A, C);
         g.insertarAdyacente(C, E);
-        g.insertarAdyacente(D, A);
-
+        g.insertarAdyacente(E, D);
+        g.insertarAdyacente(D, B);
+        g.insertarAdyacente(A, D);
+        g.insertarAdyacente(B, E);
+        
+        g.DFS(A);
+        
     }
 }
